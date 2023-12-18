@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} {% block content %}
+{% if messages %}
+{% for msg in messages %}
+<div class="message">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+</div>
+{% endfor %}
+{% endif %}
+<h1>Listado de paises</h1>
+<table class="table">
+<tbody>
+    <thead>
+        <th>Id</th>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Poblacion</th>
+    </thead>
+    {% for pais in paises %}
+    
+    <tr>
+        <td>{{ pais.idpais }}</td>
+        <td>{{ pais.code }}</td>
+        <td>{{ pais.nombre }}</td>
+        <td>{{ pais.poblacion }}</td>
+        <td><a href="{% url 'eliminar_pais' idpais=pais.idpais %}" class="btn btn-sm btn-block btn-danger">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}
